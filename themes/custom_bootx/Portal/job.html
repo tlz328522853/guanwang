@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+	<html lang="en" class="no-js">
+	<head>
+		<title>{$post_title}</title>
+	    <meta name="keywords" content="{$post_keywords}" />
+		<meta name="description" content="{$post_excerpt}">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+		<tc_include file="Public:head" />
+	</head>
+
+<body>
+<tc_include file="Public:nav" />
+
+<section class="product_brand">
+	<div class="product_info">
+		<h3 class="afterBorder">{$post_title}</h3>
+		<p class="f18">
+			{$post_excerpt}
+		</p>
+	</div>
+	<php>
+      $smeta=json_decode($smeta,true);
+    </php>
+	<img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="" />
+</section>
+
+<div class="bgWhite">
+<div class="box_inner">
+	<div class="job_container">
+	    <php>
+		        $tag="where:description ='招贤纳士';";
+			    $terms = sp_get_terms($tag);
+		</php>
+   		<foreach name="terms" item="voo">
+			<h3 class="job_title">{$voo.name}</h3>
+			<ul class="job_lists">
+			    <php>
+				    $lists = sp_sql_posts_paged("cid:$voo[term_id];order:post_date ASC;",100);
+				</php>
+				<volist name="lists['posts']" id="vo">
+					<li><a href="{:leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']))}">{$vo.post_title}</a></li>
+				</volist>
+			</ul>
+		</foreach>
+	</div>
+
+</div>
+</div>
+
+<div>
+<tc_include file="Public:footer"/>
+</div>
+<tc_include file="Public:scripts"/>
+<script src="__TMPL__Public/assets/js/modernizr.js"></script>
+<script src="__TMPL__Public/assets/js/scrollTabLight.js"></script>
+<script>
+$(function(){
+	/*导航菜单*/
+	 $('#nav>ul> li').hover(function() {
+            $('.navList', this).slideDown(200);
+            var $a = $(this).children('a:first');
+            $a.addClass("active");
+        }, function() {
+            $('.navList', this).slideUp(100);
+            var $a = $(this).children('a:first');
+            $a.removeClass("active");
+        });
+    $(".product_nav").scrollTabLight();
+	
+})
+</script>
+{:hook('footer_end')}
+</body>
+</html>

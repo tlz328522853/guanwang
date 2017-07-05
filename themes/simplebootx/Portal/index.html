@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<title>{$site_name}</title>
+		<meta name="keywords" content="{$site_seo_keywords}" />
+		<meta name="description" content="{$site_seo_description}">
+		<tc_include file="Public:head" />
+		<link href="__TMPL__Public/assets/css/slippry/slippry.css" rel="stylesheet">
+		<style>
+			.caption-wraper{position: absolute;left:50%;bottom:2em;}
+			.caption-wraper .caption{
+			position: relative;left:-50%;
+			background-color: rgba(0, 0, 0, 0.54);
+			padding: 0.4em 1em;
+			color:#fff;
+			-webkit-border-radius: 1.2em;
+			-moz-border-radius: 1.2em;
+			-ms-border-radius: 1.2em;
+			-o-border-radius: 1.2em;
+			border-radius: 1.2em;
+			}
+			@media (max-width: 767px){
+				.sy-box{margin: 12px -20px 0 -20px;}
+				.caption-wraper{left:0;bottom: 0.4em;}
+				.caption-wraper .caption{
+				left: 0;
+				padding: 0.2em 0.4em;
+				font-size: 0.92em;
+				-webkit-border-radius: 0;
+				-moz-border-radius: 0;
+				-ms-border-radius: 0;
+				-o-border-radius: 0;
+				border-radius: 0;}
+			}
+		</style>
+	</head>
+<!-- <body class="body-white"> -->
+<!-- <tc_include file="Public:nav" /> -->
+<php>
+$home_slides=sp_getslide("portal_index");
+$home_slide_1920s=sp_getslide("portal_index_1920");
+$home_slide_menus=sp_getslide("portal_menu");
+$home_slides=empty($home_slides)?$default_home_slides:$home_slides;
+</php>
+
+<body  style="background:url('{:sp_get_asset_upload_path($home_slides[0][slide_pic])}') fixed center top no-repeat #2e322e;">
+
+<div class="container">
+    <div class="head" desc="动态控制head中的按钮">
+        <div class="logo"><img src="__TMPL__Public/assets/images/new/logo.png"></div>
+        <div class="nav">
+       	<?php
+			$effected_id="main-menu";
+		  	$filetpl="<a href='\$href' target='\$target' style='padding-left: 0px;'>\$label</a>";
+		  	$foldertpl="<a href='\$href' target='\$target' class='dropdown-toggle' data-toggle='dropdown'>\$label <b class='caret'></b></a>";
+		  	$ul_class="dropdown-menu" ;
+		  	$li_class="" ;
+		  	$style="";
+		  	$showlevel=6;
+		  	$dropdown='dropdown';
+		  	echo sp_get_menu("main",$effected_id,$filetpl,$foldertpl,$ul_class,$li_class,$style,$showlevel,$dropdown);
+		?>
+       </div>
+    </div>
+    
+    <div desc="动态控制图片上的文字和链接">
+        <div class="banner_info_box">
+           	<foreach name="home_slides" item="vo">
+				<div class="banner_info" src="{:sp_get_asset_upload_path($vo['slide_pic'])}">
+	                <h3>{$vo.slide_name}</h3>
+	                <p>{$vo.slide_des}</p>
+	                <a href="{$vo.slide_url}" target="_blank">查看详情</a>
+                </div>
+			</foreach>
+        </div>
+    </div>
+    
+    <!--控制点-->
+    <div class="control-dot" desc="动态控制图片切换的数字和图片路径">
+    <ul id="fouse">
+        <php>$i=0;</php>
+        <foreach name="home_slides" item="vo">
+            <li class="active" src="{:sp_get_asset_upload_path($vo['slide_pic'])}"
+              src1920="{:sp_get_asset_upload_path($home_slide_1920s[$i][slide_pic])}">
+               <?php $i++; echo $i ?>
+            </li>
+		</foreach>
+    </ul>
+    </div>
+</div>
+
+<div class="menu_list" desc="动态控制图底部的 几个点击menu,">
+    <div class="menu">
+        <ul>
+	        <foreach name="home_slide_menus" item="vo">
+				<li class="menu_all">
+				<a style="background-image: url('{:sp_get_asset_upload_path($vo[slide_pic])}');" href="{$vo.slide_url}" target="_blank">{$vo.slide_name}</a>
+				</li>
+			</foreach>
+        </ul>
+    </div>
+</div>
+
+
+<div>
+<tc_include file="Public:footer"/>
+</div>
+
+<tc_include file="Public:scripts"/>
+<script src="__TMPL__Public/assets/js/slippry.min.js"></script>
+<script>
+$(function() {
+	var demo1 = $("#homeslider").slippry({
+		transition: 'fade',
+		useCSS: true,
+		captions: false,
+		speed: 1000,
+		pause: 3000,
+		auto: true,
+		preload: 'visible'
+	});
+});
+</script>
+{:hook('footer_end')}
+</body>
+</html>

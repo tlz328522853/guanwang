@@ -1,0 +1,158 @@
+/*解决方案banner图*/
+.solution_banner{
+	background-image:url(../images/solution_banner.png);
+	height: 4.1rem;
+	color: white;
+	text-align: center;
+}
+.solution_banner h2{
+	width: 3.1rem;
+	height: 0.48rem;
+	margin: 0.94rem auto 0;
+}
+.solution_banner p{
+	width: 6.7rem;
+	line-height: 0.28rem;
+	font-size: 0.18rem;
+	margin: 0 auto;
+}
+.solution_banner_btn{
+	position: absolute;
+	top: 2.53rem;
+	left: 50%;
+	transform: translate(-50%,0);
+	-webkit-transform: translate(-50%,0);
+	-moz-transform: translate(-50%,0);
+	width: 1.1rem;
+	height: 0.4rem;
+	text-align: center;
+	line-height: 0.4rem;
+	background-color: #3294ea;
+	color: #fff;
+	font-size: 14px;
+	cursor: pointer;
+}
+/*解决方案中间内容区*/
+.solution_container{
+	width: 11.70rem;
+	height: 21.8rem;
+	margin: 0 auto;
+}
+.solution_container_left{
+	float: left;
+	width: 1.98rem;
+	height: 2.4rem;
+}
+.solution_container_left ul{
+	width: 100%;
+	height: 100%;
+}
+.solution_container_left ul li{
+	position: relative;
+	width: 100%;
+	height: 0.5rem;
+	padding-left: 0.2rem;
+	box-sizing: border-box;
+	border: 1px solid #efefef;
+	border-top: none;
+	border-right: none;
+	line-height: 0.5rem;
+	text-align: left;
+	font-size: 14px;
+	color: #333;
+	cursor: pointer;
+	background-repeat: no-repeat;
+	background-position: 1.76rem center;
+	background-image: url(../images/solution_nav_rightArrow.png);
+}
+.solution_container_left ul li.active{
+	background-color: #f3f3f3;
+	border-left:0.04rem solid #3294ea;
+	padding-left: 0.16rem;
+	background-position: 1.72rem center;
+	background-image: url(../images/solution_nav_rightArrowActive.png);
+}
+.solution_container_left ul li:hover a{
+	color: #3294ea;
+}
+.solution_container_right{
+	float: left;
+	width:9.72rem;
+	height: 100%;
+	border: 1px solid #efefef;
+	box-sizing: border-box;
+	padding: 0.32rem 0.55rem 0 0.35rem;
+}
+.solution_Rinbox{
+	width: 100%;
+	height: 100%;
+}
+.solution_title{
+	width: 100%;
+	height: 0.36rem;
+	font-size: 0.2rem;
+	color: #000;
+	clear: both;
+}
+.solution_title span{
+	float: left;
+	display: inline-block;
+}
+.solution_title em{
+	float: right;
+	display: inline-block;
+	width: 7.13rem;
+	height: 1px;
+	margin-top: 0.17rem;
+	background: #ddd;
+}
+.solution_chWtarget{
+	width: 8.73rem;
+	height: 4.26rem;
+	background: url(../images/solution_chWtarget_pic.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+.solution_Rinbox p{
+	float: left;
+	width: 4.48rem;
+	line-height: 0.26rem;
+	min-height: 1rem;
+	color: #000;
+	font-size: 0.16rem;
+	margin-top: 0.4rem;
+}
+.solution_cText_pic{
+	float: right;
+	width: 4.06rem;
+	height: 3.6rem;
+	background: url(../images/solution_chwText_pic.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+.mb24{
+	margin-bottom: 24px;
+}
+.solution_chWfunction{
+	width: 8.73rem;
+	height: 5.43rem;
+	background: url(../images/solution_chWfunction_pic.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+.solution_title em.short{
+	width: 6.43rem;
+}
+.solution_chWvalue{
+	width: 8.75rem;
+	height: 4.36rem;
+	background: url(../images/solution_chWvalue_pic.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+	<html lang="en" class="no-js">
+	<head>
+		<title>{$post_title}</title>
+	    <meta name="keywords" content="{$post_keywords}" />
+		<meta name="description" content="{$post_excerpt}">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+		<tc_include file="Public:head" />
+	</head>
+
+<body>
+<tc_include file="Public:nav" />
+
+<section class="product_brand">
+	<div class="product_info">
+		<h3>{$post_title}</h3>
+		<p>
+			{$post_excerpt}
+		</p>
+		<a href="{$post_mime_type}">联系我们</a>
+	</div>
+	<php>
+      $smeta=json_decode($smeta,true);
+    </php>
+	<img src="{:sp_get_image_preview_url($slide_pic)}{$smeta.thumb}" alt="" />
+</section>
+<textarea id="content_filtered" name="" style='display:none;'>{$post_content_filtered}</textarea>
+<div id="contentVal"></div>
+
+<div>
+<tc_include file="Public:footer"/>
+</div>
+<tc_include file="Public:scripts"/>
+<script src="__TMPL__Public/assets/js/modernizr.js"></script>
+<script src="__TMPL__Public/assets/js/scrollTabLight.js"></script>
+<script>
+$(function(){
+     $("#contentVal").html($("#content_filtered").val());
+	/*导航菜单*/
+	 $('#nav>ul> li').hover(function() {
+            $('.navList', this).slideDown(200);
+            var $a = $(this).children('a:first');
+            $a.addClass("active");
+        }, function() {
+            $('.navList', this).slideUp(100);
+            var $a = $(this).children('a:first');
+            $a.removeClass("active");
+        });
+ // 切换
+  //tab切换
+		var index=request("index");
+		/*console.log(pro);*/
+		$("#yj_tab li").click(function(){
+			var index=$(this).index();
+			$(this).addClass("current").siblings().removeClass("current");
+			$("#yj_container>div").eq(index).addClass("current").siblings().removeClass("current");
+		})
+		if(index){
+			$("#yj_tab li").eq(index).click()
+		}else{
+			$("#yj_tab li").eq(0).click()
+		}
+})
+</script>
+{:hook('footer_end')}
+</body>
+</html>

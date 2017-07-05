@@ -1,0 +1,64 @@
+<!-- <br>
+<br> -->
+<!-- <br> -->
+<!-- Footer ================================================== -->
+<!-- <hr>
+{:hook('footer')}
+<div id="footer">
+	<p>
+		<a href="http://www.cloudsmaker.net/" target="_blank">北京智慧云行科技有限责任公司</a>
+		Copyright©2016 智慧云行 京ICP备14046044号-1
+
+	</p>
+</div>
+<div id="backtotop">
+	<i class="fa fa-arrow-circle-up"></i>
+</div>
+{$site_tongji} -->
+
+<div class="news" desc="使用文章  显示最新的5条新闻">
+<ul>
+    <li>
+        <span>新闻</span>
+        <php> $lists = sp_sql_posts_paged("cid:3;order:post_date DESC;",5); </php>
+        <volist name="lists['posts']" id="vo">
+	        <span>
+		        <a target="_blank" href="javascript:void(0);">
+		        <!-- <a target="_blank" href="{:leuu('article/index',array('id'=>$vo['object_id'],'cid'=>$vo['term_id']))}"> -->
+				{$vo.post_title} &nbsp;&nbsp; {$vo.post_date}
+				</a>
+			</span>
+        </volist>
+    </li>
+</ul>
+</div>
+
+{:hook('footer')}
+<div id="footer" class="footer">
+    <div>
+        <div class="footer_left">
+            <div class="friend_liks">
+                <span>友情链接</span>
+                <php>$links=sp_getlinks();</php>
+				<foreach name="links" item="vo">
+					<a href="{$vo.link_url}" target="{$vo.link_target}">{$vo.link_name}</a>
+				</foreach>
+            </div>
+            <div class="partner_links">
+                <php> $lists = sp_sql_posts_paged("cid:4;order:post_date DESC;",50); </php>
+		        <volist name="lists['posts']" id="vo">
+					<a href="{$vo.post_excerpt}">{$vo.post_title}</a>
+		        </volist>
+            </div>
+            <div>
+                <p>{$site_copyright}&nbsp;{$site_icp}</p>
+            </div>
+    </div>
+    <div class="footer_right">
+        <img src="__TMPL__Public/assets/images/new/code.png" alt="" class="code">
+        <p class="icon_text">关注我们</p>
+    </div>
+    </div>
+</div>
+<!-- {$site_tongji} -->
+
